@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Railway Network Analytics</title>
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+
+        body{
+            min-height:100vh;
+            background:
+            linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.75)),
+            url("/static/images/hero.jpg");
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
+            color:white;
+        }
+
+        .navbar{
+            padding:25px 60px;
+            background:rgba(0,0,0,0.75);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            color:#f5c76f;
+            font-size:32px;
+            font-weight:bold;
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            margin-left:35px;
+            font-size:20px;
+        }
+
+        .nav-links a:hover{color:#f5c76f;}
+
+        .container{
+            padding:50px;
+        }
+
+        h1{
+            font-size:42px;
+            margin-bottom:35px;
+            color:#f5c76f;
+        }
+
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+            gap:25px;
+            margin-bottom:40px;
+        }
+
+        .stat-card{
+            background:rgba(0,0,0,0.6);
+            padding:30px;
+            border-radius:18px;
+            border:1px solid rgba(245,199,111,0.25);
+        }
+
+        .stat-card h2{
+            color:#f5c76f;
+            font-size:30px;
+            margin-bottom:10px;
+        }
+
+        .stat-card p{
+            font-size:18px;
+        }
+
+        .chart-box{
+            background:rgba(0,0,0,0.72);
+            padding:20px;
+            border-radius:18px;
+            margin-bottom:35px;
+            border:1px solid rgba(245,199,111,0.25);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        
+        <div class="nav-links">
+            <a href="/home">Home</a>
+            <a href="/dashboard">Analytics</a>
+            <a href="/smart-search">Route Finder</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Railway Network Analytics</h1>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h2>{{ total_trains }}</h2>
+                <p>Total Trains</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>{{ top_stations }}</h2>
+                <p>Major Stations</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>{{ longest_route }} km</h2>
+                <p>Longest Route</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>{{ avg_duration }} hrs</h2>
+                <p>Average Route Duration</p>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            {{ chart1 | safe }}
+        </div>
+
+        <div class="chart-box">
+            {{ chart2 | safe }}
+        </div>
+
+    </div>
+
+</body>
+</html>

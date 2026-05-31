@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Smart Route Finder</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:
+            linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.78)),
+            url("/static/images/hero.jpg");
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
+            color:white;
+        }
+
+        .container{
+            padding:70px 50px;
+        }
+
+        h1{
+            color:#f5c76f;
+            font-size:56px;
+            margin-bottom:35px;
+        }
+
+        .search-box{
+            background:rgba(0,0,0,0.58);
+            border:1px solid rgba(245,199,111,0.35);
+            border-radius:18px;
+            padding:35px;
+            margin-bottom:45px;
+        }
+
+        form{
+            display:flex;
+            gap:22px;
+            flex-wrap:wrap;
+        }
+
+        select{
+            width:300px;
+            padding:16px;
+            border-radius:10px;
+            border:none;
+            font-size:16px;
+        }
+
+        button{
+            padding:16px 40px;
+            border:none;
+            border-radius:10px;
+            background:#f5c76f;
+            color:black;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .results-title{
+            color:#f5c76f;
+            font-size:38px;
+            margin-bottom:25px;
+        }
+
+        .table-card{
+            background:rgba(0,0,0,0.58);
+            border:1px solid rgba(245,199,111,0.35);
+            border-radius:18px;
+            overflow:hidden;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:rgba(245,199,111,0.18);
+            color:#f5c76f;
+            padding:18px;
+            font-size:18px;
+        }
+
+        td{
+            padding:18px;
+            text-align:center;
+            border-top:1px solid rgba(255,255,255,0.1);
+            color:white;
+            font-size:17px;
+        }
+
+        .empty-row{
+            text-align:center;
+            color:#ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Smart Route Search</h1>
+
+        <div class="search-box">
+            <form method="POST">
+
+                <select name="source" required>
+                    <option value="">Select Source Station</option>
+                    {% for station in stations %}
+                    <option value="{{ station }}">{{ station }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="destination" required>
+                    <option value="">Select Destination Station</option>
+                    {% for station in stations %}
+                    <option value="{{ station }}">{{ station }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Find Trains</button>
+
+            </form>
+        </div>
+
+        <h2 class="results-title">Available Smart Route Results</h2>
+
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Train Number</th>
+                        <th>Source Station</th>
+                        <th>Destination Station</th>
+                        <th>Stops</th>
+                        <th>Estimated Distance</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if results %}
+                        {% for train in results %}
+                        <tr>
+                            <td>{{ train.train_no }}</td>
+                            <td>{{ train.source }}</td>
+                            <td>{{ train.destination }}</td>
+                            <td>{{ train.stops }}</td>
+                            <td>{{ train.distance }} km</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                Select source and destination stations and click Find Trains.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

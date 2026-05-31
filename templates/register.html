@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | RailConnect Intelligence</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial, Helvetica, sans-serif;
+
+            background:
+            linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+            url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2070');
+
+            background-size:cover;
+            background-position:center;
+
+            height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .register-box{
+
+            width:400px;
+
+            background:rgba(10,20,40,0.9);
+
+            padding:40px;
+
+            border-radius:15px;
+
+            color:white;
+
+            box-shadow:0 0 20px rgba(0,0,0,0.5);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        input{
+
+            width:100%;
+            padding:14px;
+
+            margin-bottom:20px;
+
+            border:none;
+            border-radius:8px;
+
+            font-size:16px;
+        }
+
+        button{
+
+            width:100%;
+
+            padding:14px;
+
+            background:#2563eb;
+
+            border:none;
+
+            color:white;
+
+            font-size:18px;
+
+            border-radius:8px;
+
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        p{
+            text-align:center;
+            margin-top:20px;
+        }
+
+        a{
+            color:#60a5fa;
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-box">
+
+        <h1>RailConnect Intelligence</h1>
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter Full Name"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+
+            <a href="/login">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</body>
+</html>
