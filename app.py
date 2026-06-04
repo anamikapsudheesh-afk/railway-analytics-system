@@ -7,7 +7,15 @@ app = Flask(__name__)
 app.secret_key = "railconnect_secret_key"
 
 DATA_PATH = "data/raw/railway_dataset.csv"
-USER_DB = "database/users.db"
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DATA_PATH = os.path.join(BASE_DIR, "data", "raw", "railway_dataset.csv")
+DB_DIR = os.path.join(BASE_DIR, "database")
+USER_DB = os.path.join(DB_DIR, "users.db")
+
+os.makedirs(DB_DIR, exist_ok=True)
 
 
 def init_user_db():
@@ -290,7 +298,8 @@ def logout():
     session.clear()
     return redirect("/login")
 
+# Initialize database when app starts
+init_user_db()
 
 if __name__ == "__main__":
-    init_user_db()
     app.run(debug=True)
